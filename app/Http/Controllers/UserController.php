@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -23,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        view('admin.users.edituser');
+        return 'create';
     }
 
     /**
@@ -43,9 +44,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return view('admin.users.edituser');
+
+        return view('admin.users.edituser', ['user' => $user]);
+
 
     }
 
@@ -57,7 +60,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        view('admin.users.edituser');
+        return 'edit';
     }
 
     /**
