@@ -10,7 +10,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form role="form">
+    <form role="form" method="POST" action="{{ route('users.update',$user->id) }}">
       <div class="card-body">
         <label for="exampleInputPassword1">Email</label>
         <div class="input-group mb-3">
@@ -19,17 +19,18 @@
             
             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
           </div>
-          <input type="email" class="form-control" placeholder="{{ $user->email }}" value="{{ $user->email }}" disabled="">
+          <input type="email" class="form-control" name="email" placeholder="{{ $user->email }}" value="{{ $user->email }}" disabled="">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Name</label>
-          <input type="text" class="form-control" placeholder="{{ $user->name }}" value="{{ $user->name }}">
+          <input type="text" class="form-control" name="name" placeholder="{{ $user->name }}" value="{{ $user->name }}">
         </div>
    
 
 
 
-
+        @csrf
+        @method('PATCH')
 
 
 

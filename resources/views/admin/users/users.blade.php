@@ -30,11 +30,12 @@
 
 
 
-            <tr>
+            
               @php
               $users = App\Models\User::all(); 
               @endphp
               @foreach ($users as $user)
+              <tr>
               <td>{{ $user->id }}</td>
               <td>{{ $user->name }}</td>
          
@@ -48,17 +49,20 @@
                       <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <div class="dropdown-menu" role="menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -165px, 0px); top: 0px; left: 0px; will-change: transform;">
-                      <a class="dropdown-item" href="#">ویرایش</a>
-                      <a class="dropdown-item" href="#">حذف</a>
-     
+                      <a class="dropdown-item" href="{{ route('users.edit',$user->id) }}">ویرایش</a>
+                      <form action="{{ route('users.destroy',$user->id) }}" method="GET">
+                      <a class="dropdown-item" href=""><input type="submit" value="حذف"></a>
+                        @csrf
+                      </form>
                     </div>
                   </div>
               </td>
+            </tr>
               @endforeach
 
 
 
-            </tr>
+  
 
 
           </tbody></table>

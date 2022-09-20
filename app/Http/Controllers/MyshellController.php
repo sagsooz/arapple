@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Myshell;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MyshellController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.users');
+        $access = Myshell::all();
+        return view('admin.myshells.index',['access' => $access]);
     }
 
     /**
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return 'create';
+        return view('admin.myshells.create');
     }
 
     /**
@@ -35,63 +36,60 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return 'store';
+        $validated = $request->validate([
+            'sitename' => 'required',
+            'link' => 'required',
+        ]);
+        $myshell = Myshell::create([
+            'sitename' => $request->name,
+            'link' => $request->title,
+        ]);
+        return redirect(route('myshell.index'));
+    }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Myshell  $myshell
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Myshell $myshell)
     {
-
-        return 'show';
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Myshell  $myshell
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $User)
+    public function edit(Myshell $myshell)
     {
-        return view('admin.users.edituser', ['user' => $User]);
+        return view('admin.myshells.edit',['myshells' => $myshell])
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Myshell  $myshell
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(Request $request, Myshell $myshell)
     {
-        $validated = $request->validate([
-            'email' => 'string',
-            'name' => 'required|max:20',
-        ]);
-        $user->name = $request->name;
-        // $user->email = $request->email;
-        $user->save();
-        return redirect()->back();
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Myshell  $myshell
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Myshell $myshell)
     {
-        $user->delete();
-        return redirect()->back();
+        //
     }
 }

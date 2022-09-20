@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Shellname;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ShellnameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.users');
+        $shells = Shellname::all();
+        return view('admin.shells.index',['shells' => $shells]);
     }
 
     /**
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return 'create';
+        return view('admin.shells.create');
     }
 
     /**
@@ -35,63 +36,59 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return 'store';
+        $validated = $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+        ]);
+        $shell = Shellname::create([
+            'name' => $request->name,
+            'title' => $request->title,
+        ]);
+        return redirect(route('shells.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Shellname  $shellname
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Shellname $shellname)
     {
-
-        return 'show';
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Shellname  $shellname
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $User)
+    public function edit(Shellname $shell)
     {
-        return view('admin.users.edituser', ['user' => $User]);
+        return view('admin.shells.edit',['shellname' => $shell]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Shellname  $shellname
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(Request $request, Shellname $shellname)
     {
-        $validated = $request->validate([
-            'email' => 'string',
-            'name' => 'required|max:20',
-        ]);
-        $user->name = $request->name;
-        // $user->email = $request->email;
-        $user->save();
-        return redirect()->back();
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Shellname  $shellname
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Shellname $shell)
     {
-        $user->delete();
-        return redirect()->back();
+        // dd($shell);
     }
 }

@@ -42,6 +42,24 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('shells.index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-tree"></i>
+                        <p>
+                           شل ها
+                            <i class="fa fa-angle-left right"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('myshell.index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-tree"></i>
+                        <p>
+                           لیست دسترسی ها
+                            <i class="fa fa-angle-left right"></i>
+                        </p>
+                    </a>
+                </li>
 
 
 
