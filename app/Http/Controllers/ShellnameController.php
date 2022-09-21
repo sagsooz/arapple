@@ -76,9 +76,16 @@ class ShellnameController extends Controller
      * @param  \App\Models\Shellname  $shellname
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shellname $shellname)
+    public function update(Request $request,Shellname $shell)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+        ]);
+        $shell->name = $request->name;
+        $shell->title = $request->title;
+        $shell->save();
+        dd('ok');
     }
 
     /**

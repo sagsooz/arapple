@@ -8,13 +8,11 @@
                     <h3 class="card-title">دسترسی های فعال</h3>
 
                     <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
-
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
+                        <div class="input-group input-group-sm" style="width: 120px;">
+                            <a href="{{ route('myshell.create') }}">
+                            <button type="button" class="btn btn-sm btn-block btn-success btn-lg">افزودن دسترسی</button>
+                          </a>
+                          </div>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -25,7 +23,7 @@
                                 <th>آیدی</th>
                                 <th>وبسایت</th>
                                 <th>وضعیت</th>
-                                <th>عملیات</th>
+                                <th>شل</th>
                             </tr>
 
                             @foreach ($access as $acces)
@@ -34,7 +32,7 @@
                                     <td>{{ $acces->id }}</td>
                                     <td>{{ $acces->sitename }}</td>
                                     <td><span class="badge badge-success">فعال</span></td>
-                                    <td>ویرایش</td>
+                                    <td><input type="text" value="{{ $acces->link }}"></td>
                                 </tr>      
                                 @endif
 
@@ -57,15 +55,7 @@
                 <div class="card-header">
                     <h3 class="card-title">دسترسی های غیرفعال</h3>
 
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
 
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
@@ -75,7 +65,7 @@
                                 <th>آیدی</th>
                                 <th>وبسایت</th>
                                 <th>وضعیت</th>
-                                <th>عملیات</th>
+                                <th>شل</th>
                             </tr>
      
                             @foreach ($access as $acces)
@@ -84,7 +74,7 @@
                                     <td>{{ $acces->id }}</td>
                                     <td>{{ $acces->sitename }}</td>
                                     <td><span class="badge bg-danger">غیرفعال</span></td>
-                                    <td>ویرایش</td>
+                                    <td><input type="text" value="{{ $acces->link }}"></td>
                                 </tr>      
                                 @endif
                             @endforeach

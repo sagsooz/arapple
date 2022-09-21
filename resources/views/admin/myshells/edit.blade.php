@@ -10,16 +10,17 @@
             <!-- /.card-header -->
             <!-- form start -->
 
-            <form role="form" action="{{ route('myshell.store') }}" method="POST">
+            <form role="form" action="{{ route('myshell.update',$myshells->id) }}" method="POST">
                 @csrf
+                @method('PATCH')
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">نام سایت</label>
-                        <input type="text" class="form-control" name="name" placeholder="google.com">
+                        <input type="text" class="form-control" name="sitename" value="{{ $myshells->sitename }}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">لینک دسترسی</label>
-                        <input type="text" class="form-control" name="name" placeholder="http://google.com/img/shell.php">
+                        <input type="text" class="form-control" name="link" value="{{ $myshells->link }}">
                     </div>
 
 

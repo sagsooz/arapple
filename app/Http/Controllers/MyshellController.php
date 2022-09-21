@@ -36,13 +36,14 @@ class MyshellController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'sitename' => 'required',
             'link' => 'required',
         ]);
         $myshell = Myshell::create([
-            'sitename' => $request->name,
-            'link' => $request->title,
+            'sitename' => $request->sitename,
+            'link' => $request->link,
         ]);
         return redirect(route('myshell.index'));
     }
@@ -79,7 +80,7 @@ class MyshellController extends Controller
      */
     public function update(Request $request, Myshell $myshell)
     {
-        //
+        
     }
 
     /**

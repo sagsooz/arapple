@@ -12,21 +12,16 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::prefix('dashboard')->group(function(){
-
-Route::get('/' , function(){
-    return view('admin.dashboard');
-})->name('dashboard');
-
-
+Route::prefix('dashboard')->middleware('auth')->group(function(){
+Route::get('/' , function(){return redirect(route('myshell.index'));})->name('dashboard');
 Route::resource('/users', UserController::class);
-
-
 Route::resource('/shells', ShellnameController::class);
-
 Route::resource('/myshell', MyshellController::class);
-
 
 });
 
 
+
+Route::get('/cronjob', function(){
+    return view('cronjob');
+});

@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Myshell extends Model
+class Home extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'sitename',
-        'link',
-    ];
 }
