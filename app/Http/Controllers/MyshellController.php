@@ -46,7 +46,7 @@ class MyshellController extends Controller
         ]);
         return redirect(route('myshell.index'));
     }
-    }
+    
 
     /**
      * Display the specified resource.
@@ -67,7 +67,7 @@ class MyshellController extends Controller
      */
     public function edit(Myshell $myshell)
     {
-        return view('admin.myshells.edit',['myshells' => $myshell])
+        return view('admin.myshells.edit',['myshells' => $myshell]);
     }
 
     /**
