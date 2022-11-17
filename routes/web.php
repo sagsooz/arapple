@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,7 +10,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 
 Route::prefix('dashboard')->group(function(){
 
@@ -18,7 +19,7 @@ Route::get('/' , function(){
 
 
 Route::resource('/users', UserController::class);
-
+Route::resource('/buy', Product::class)
 });
 
 
